@@ -5,6 +5,8 @@ Community-maintained collection of validated strategies, configurations, and res
 **Maintained by:** Lone Wolf Trading Group 🐺  
 **Last updated:** 2026-07-24
 
+🌐 [View Online](https://lonewolftradinggroup-ai.github.io/lwtg-strategies) | 🏆 [View Leaderboard](https://lonewolftradinggroup-ai.github.io/lwtg-strategies/LEADERBOARD)
+
 ---
 
 ## Structure
@@ -60,8 +62,9 @@ Community-maintained collection of validated strategies, configurations, and res
 ## Contributing
 
 See [`community/SUBMISSION_TEMPLATE.md`](community/SUBMISSION_TEMPLATE.md).  
-Post in Discord for review before submitting a PR.
+Post your completed submission in Discord for review.  
+Minimum 50 backtest trades required to appear in the Validated section.
 
 ---
 
-*Not financial advice.*
+*Not financial advice. Past performance does not guarantee future results.*
