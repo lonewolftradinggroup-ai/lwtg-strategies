@@ -17,7 +17,6 @@
     --green:     #2ecc71;
     --red:       #e74c3c;
     --amber:     #f39c12;
-    --muted:     #4a5268;
     --text:      #d4d8e8;
     --text-dim:  #6b7494;
     --mono:      'Space Mono', monospace;
@@ -49,13 +48,8 @@
     inset: 0;
     background:
       linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%),
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 60px,
-        rgba(201,168,76,0.02) 60px,
-        rgba(201,168,76,0.02) 61px
-      );
+      repeating-linear-gradient(90deg, transparent, transparent 60px,
+        rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px);
   }
 
   .banner-inner {
@@ -165,20 +159,39 @@
     padding: 40px 40px 80px;
   }
 
-  /* ── INTRO ──────────────────────────────────────────────── */
-  .intro {
-    padding: 28px 32px;
-    background: var(--surface);
+  /* ── STATS BAR ──────────────────────────────────────────── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
     border-radius: 8px;
+    overflow: hidden;
     margin-bottom: 40px;
-    font-size: 14px;
-    color: var(--text-dim);
-    line-height: 1.8;
   }
 
-  .intro strong { color: var(--text); }
+  .stat {
+    background: var(--surface);
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
 
   /* ── SECTION HEADER ─────────────────────────────────────── */
   .section-header {
@@ -207,87 +220,83 @@
     font-family: var(--mono);
   }
 
-  /* ── PRESET GRID ────────────────────────────────────────── */
-  .preset-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
+  /* ── TABLE ──────────────────────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     margin-bottom: 40px;
   }
 
-  .preset-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    transition: border-color 0.2s, background 0.2s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
   }
 
-  .preset-card:hover {
-    border-color: var(--gold-dim);
+  thead {
     background: var(--surface2);
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 14px;
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s;
   }
 
-  .card-name {
-    font-size: 16px;
+  th:hover { color: var(--gold); }
+  th.sorted-asc::after  { content: ' ↑'; color: var(--gold); }
+  th.sorted-desc::after { content: ' ↓'; color: var(--gold); }
+
+  td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background 0.12s; }
+  tbody tr:hover { background: var(--gold-glow); }
+
+  .preset-name {
     font-weight: 700;
     color: #fff;
-    margin-bottom: 4px;
-  }
-
-  .card-sub {
-    font-size: 11px;
-    color: var(--text-dim);
-    font-family: var(--mono);
+    font-family: var(--sans);
+    font-size: 13px;
   }
 
   .tag {
     display: inline-block;
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: 3px;
     font-size: 10px;
     font-family: var(--mono);
     font-weight: 700;
     letter-spacing: 0.05em;
-    white-space: nowrap;
   }
 
   .tag-mits { background: rgba(99,102,241,0.15); color: #818cf8; }
   .tag-qct  { background: rgba(201,168,76,0.15); color: var(--gold); }
   .tag-qcs  { background: rgba(16,185,129,0.15); color: #34d399; }
 
-  .card-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-  }
-
-  .card-stat-label {
-    font-size: 10px;
-    color: var(--text-dim);
-    font-family: var(--mono);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-
-  .card-stat-value {
-    font-size: 14px;
-    font-weight: 600;
-    font-family: var(--mono);
-  }
+  .status-active { color: var(--green); }
+  .status-paper  { color: var(--gold); }
+  .status-watch  { color: var(--amber); }
 
   .pnl-pos { color: var(--green); }
   .pnl-neg { color: var(--red); }
@@ -297,69 +306,28 @@
   .wr-mid  { color: var(--amber); }
   .wr-low  { color: var(--red); }
 
-  .status-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    margin-right: 6px;
-  }
+  .small-warn { font-size: 10px; color: var(--amber); margin-left: 2px; }
 
-  .dot-active { background: var(--green); box-shadow: 0 0 6px var(--green); }
-  .dot-paper  { background: var(--gold); }
-  .dot-watch  { background: var(--amber); }
-
-  .card-status {
-    font-size: 11px;
-    font-family: var(--mono);
-    color: var(--text-dim);
-    margin-top: 12px;
+  /* ── LEGEND ─────────────────────────────────────────────── */
+  .legend {
     display: flex;
-    align-items: center;
-  }
-
-  /* ── STANDARDS ──────────────────────────────────────────── */
-  .standards {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 24px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 24px 28px;
     margin-bottom: 40px;
   }
 
-  .standards h3 {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-family: var(--mono);
-    margin-bottom: 16px;
-  }
-
-  .standards ul {
-    list-style: none;
+  .legend-item {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .standards li {
-    font-size: 13px;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
     color: var(--text-dim);
-    padding-left: 20px;
-    position: relative;
-  }
-
-  .standards li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold-dim);
     font-family: var(--mono);
   }
-
-  .standards li strong { color: var(--text); }
 
   /* ── CTA ────────────────────────────────────────────────── */
   .cta {
@@ -375,17 +343,8 @@
     flex-wrap: wrap;
   }
 
-  .cta-text h3 {
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 4px;
-  }
-
-  .cta-text p {
-    font-size: 13px;
-    color: var(--text-dim);
-  }
+  .cta-text h3 { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .cta-text p  { font-size: 13px; color: var(--text-dim); }
 
   .cta-btn {
     display: inline-block;
@@ -448,254 +407,179 @@
 
 <main>
 
-  <div class="intro">
-    Community-maintained collection of validated strategies, configurations, and results for the LWTG MITS framework.
-    <strong>All data is real — every trade logged, every result verified.</strong>
-    Presets marked ⚠️ have fewer than 50 trades; treat results as indicative only.
-    Minimum 50 backtest trades required to submit.
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Active Presets</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">162</div>
+      <div class="stat-label">Total Trades</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">71.9%</div>
+      <div class="stat-label">Overall WR</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">+$1,334</div>
+      <div class="stat-label">Net P&L (after fees)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">2026-10-01</div>
+      <div class="stat-label">Next Refit</div>
+    </div>
   </div>
 
-  <!-- QC TREND -->
+  <!-- ALL PRESETS TABLE -->
   <div class="section-header">
-    <div class="section-title">QC Trend</div>
-    <div class="section-note">Trend-following · ATR brackets</div>
+    <div class="section-title">All Presets</div>
+    <div class="section-note">Click any column to sort · ⚠️ = fewer than 50 trades</div>
   </div>
 
-  <div class="preset-grid">
-    <a class="preset-card" href="strategies/QCT/MNQ-4m-QCT/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MNQ-4m-QCT ⚠️</div>
-          <div class="card-sub">MNQ · 4m · 3 contracts</div>
-        </div>
-        <span class="tag tag-qct">QC Trend</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">20</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-high">75.0%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-pos">+$663</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-paper"></span>Paper · Session edge: Tokyo/ETH + NY</div>
-    </a>
-
-    <a class="preset-card" href="strategies/QCT/MGC-2m-QCT/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MGC-2m-QCT ⚠️</div>
-          <div class="card-sub">MGC · 2m · 3 contracts</div>
-        </div>
-        <span class="tag tag-qct">QC Trend</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">3</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-high">100%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-pos">+$538</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-paper"></span>Paper · Session edge: All · % stop on MGC</div>
-    </a>
+  <div class="table-wrap">
+    <table id="lib-table">
+      <thead>
+        <tr>
+          <th data-col="preset">Preset</th>
+          <th data-col="strategy">Strategy</th>
+          <th data-col="instrument">Instrument</th>
+          <th data-col="tf">TF</th>
+          <th data-col="contracts">Contracts</th>
+          <th data-col="trades" data-type="num">Trades</th>
+          <th data-col="wr" data-type="pct">WR</th>
+          <th data-col="pf" data-type="num">PF</th>
+          <th data-col="pnl" data-type="num">Net P&L</th>
+          <th data-col="session">Session Edge</th>
+          <th data-col="block">Block Window</th>
+          <th data-col="status">Status</th>
+          <th data-col="submittedBy">Submitted By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-pf="8.05" data-wr="91.7" data-pnl="1150.50" data-trades="24">
+          <td><span class="preset-name">MES-15m</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-mits">MITS</span></td>
+          <td>MES</td><td>15m</td><td>3</td>
+          <td>24</td>
+          <td><span class="wr-high">91.7%</span></td>
+          <td>8.05</td>
+          <td><span class="pnl-pos">+$1,150.50</span></td>
+          <td>New York</td>
+          <td class="pnl-neu">None</td>
+          <td><span class="status-active">✅ Active</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="2.67" data-wr="85.7" data-pnl="503.90" data-trades="7">
+          <td><span class="preset-name">MNQ-4m</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-qcs">QC Signals</span></td>
+          <td>MNQ</td><td>4m</td><td>3</td>
+          <td>7</td>
+          <td><span class="wr-high">85.7%</span></td>
+          <td>2.67</td>
+          <td><span class="pnl-pos">+$503.90</span></td>
+          <td>Tokyo/ETH</td>
+          <td class="pnl-neu">None</td>
+          <td><span class="status-active">✅ Active</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="999" data-wr="100" data-pnl="537.90" data-trades="3">
+          <td><span class="preset-name">MGC-2m-QCT</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-qct">QC Trend</span></td>
+          <td>MGC</td><td>2m</td><td>3</td>
+          <td>3</td>
+          <td><span class="wr-high">100%</span></td>
+          <td>—</td>
+          <td><span class="pnl-pos">+$537.90</span></td>
+          <td>All</td>
+          <td class="pnl-neu">None</td>
+          <td><span class="status-paper">📄 Paper</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="1.57" data-wr="82.8" data-pnl="576.50" data-trades="29">
+          <td><span class="preset-name">MGC-5m</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-mits">MITS</span></td>
+          <td>MGC</td><td>5m</td><td>1</td>
+          <td>29</td>
+          <td><span class="wr-high">82.8%</span></td>
+          <td>1.57</td>
+          <td><span class="pnl-pos">+$576.50</span></td>
+          <td>Tokyo/ETH</td>
+          <td>10:00–12:00 CT</td>
+          <td><span class="status-active">✅ Active</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="1.28" data-wr="75.0" data-pnl="663.00" data-trades="20">
+          <td><span class="preset-name">MNQ-4m-QCT</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-qct">QC Trend</span></td>
+          <td>MNQ</td><td>4m</td><td>3</td>
+          <td>20</td>
+          <td><span class="wr-high">75.0%</span></td>
+          <td>1.28</td>
+          <td><span class="pnl-pos">+$663.00</span></td>
+          <td>Tokyo/ETH + NY</td>
+          <td class="pnl-neu">None</td>
+          <td><span class="status-paper">📄 Paper</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="1.29" data-wr="50.0" data-pnl="91.00" data-trades="4">
+          <td><span class="preset-name">MNQ-15m</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-mits">MITS</span></td>
+          <td>MNQ</td><td>15m</td><td>1</td>
+          <td>4</td>
+          <td><span class="wr-mid">50.0%</span></td>
+          <td>1.29</td>
+          <td><span class="pnl-pos">+$91.00</span></td>
+          <td>—</td>
+          <td>10:00–12:00 CT</td>
+          <td><span class="status-active">✅ Active</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="0.69" data-wr="70.4" data-pnl="-370.40" data-trades="54">
+          <td><span class="preset-name">M2K-15m</span></td>
+          <td><span class="tag tag-mits">MITS</span></td>
+          <td>M2K</td><td>15m</td><td>1</td>
+          <td>54</td>
+          <td><span class="wr-mid">70.4%</span></td>
+          <td>0.69</td>
+          <td><span class="pnl-neg">-$370.40</span></td>
+          <td>New York</td>
+          <td>13:00–18:00 CT</td>
+          <td><span class="status-watch">⚠️ Watch</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+        <tr data-pf="0.62" data-wr="57.1" data-pnl="-437.12" data-trades="7">
+          <td><span class="preset-name">MES-5m</span> <span class="small-warn">⚠️</span></td>
+          <td><span class="tag tag-qcs">QC Signals</span></td>
+          <td>MES</td><td>5m</td><td>3</td>
+          <td>7</td>
+          <td><span class="wr-mid">57.1%</span></td>
+          <td>0.62</td>
+          <td><span class="pnl-neg">-$437.12</span></td>
+          <td>London</td>
+          <td class="pnl-neu">None</td>
+          <td><span class="status-watch">⚠️ Watch</span></td>
+          <td>@LoneWolfTradingGroup</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- QC SIGNALS -->
-  <div class="section-header">
-    <div class="section-title">QC Signals</div>
-    <div class="section-note">Signal-based · strategy defaults</div>
-  </div>
-
-  <div class="preset-grid">
-    <a class="preset-card" href="strategies/QCS/MNQ-4m/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MNQ-4m ⚠️</div>
-          <div class="card-sub">MNQ · 4m · 3 contracts</div>
-        </div>
-        <span class="tag tag-qcs">QC Signals</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">7</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-high">85.7%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-pos">+$504</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-active"></span>Active · Session edge: Tokyo/ETH</div>
-    </a>
-
-    <a class="preset-card" href="strategies/QCS/MES-5m/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MES-5m ⚠️</div>
-          <div class="card-sub">MES · 5m · 3 contracts</div>
-        </div>
-        <span class="tag tag-qcs">QC Signals</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">7</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-mid">57.1%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-neg">-$437</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-watch"></span>Watch · NY session drag</div>
-    </a>
-  </div>
-
-  <!-- MITS -->
-  <div class="section-header">
-    <div class="section-title">MITS</div>
-    <div class="section-note">Multi-instrument · ATR dynamic brackets</div>
-  </div>
-
-  <div class="preset-grid">
-    <a class="preset-card" href="strategies/MITS/MES-15m/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MES-15m ⚠️</div>
-          <div class="card-sub">MES · 15m · 3 contracts</div>
-        </div>
-        <span class="tag tag-mits">MITS</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">24</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-high">91.7%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-pos">+$1,151</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-active"></span>Active · Session edge: New York</div>
-    </a>
-
-    <a class="preset-card" href="strategies/MITS/MNQ-15m/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MNQ-15m ⚠️</div>
-          <div class="card-sub">MNQ · 15m · 1 contract · Block 10:00–12:00 CT</div>
-        </div>
-        <span class="tag tag-mits">MITS</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">4</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-mid">50.0%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-pos">+$91</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-active"></span>Active · Low sample</div>
-    </a>
-
-    <a class="preset-card" href="strategies/MITS/MGC-5m/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">MGC-5m ⚠️</div>
-          <div class="card-sub">MGC · 5m · 1 contract · Block 10:00–12:00 CT</div>
-        </div>
-        <span class="tag tag-mits">MITS</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">29</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-high">82.8%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-pos">+$577</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-active"></span>Active · Session edge: Tokyo/ETH</div>
-    </a>
-
-    <a class="preset-card" href="strategies/MITS/M2K-15m/results.md">
-      <div class="card-top">
-        <div>
-          <div class="card-name">M2K-15m</div>
-          <div class="card-sub">M2K · 15m · 1 contract · Block 13:00–18:00 CT</div>
-        </div>
-        <span class="tag tag-mits">MITS</span>
-      </div>
-      <div class="card-stats">
-        <div>
-          <div class="card-stat-label">Trades</div>
-          <div class="card-stat-value pnl-neu">54</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Win Rate</div>
-          <div class="card-stat-value wr-mid">70.4%</div>
-        </div>
-        <div>
-          <div class="card-stat-label">Net P&L</div>
-          <div class="card-stat-value pnl-neg">-$370</div>
-        </div>
-      </div>
-      <div class="card-status"><span class="status-dot dot-watch"></span>Watch · TF switch unvalidated · Oct 1 refit</div>
-    </a>
-  </div>
-
-  <!-- STANDARDS -->
-  <div class="standards">
-    <h3>Submission Standards</h3>
-    <ul>
-      <li><strong>Minimum 50 backtest trades</strong> to appear in the Validated leaderboard section</li>
-      <li><strong>Paper results required</strong> before any live recommendation</li>
-      <li><strong>No TP/SL tuning</strong> on presets with fewer than 50 trades</li>
-      <li><strong>MGC instruments require percent stop</strong> — ATR stops do not suit gold's volatility profile</li>
-      <li><strong>Refit cadence: quarterly</strong> — next refit Oct 1, 2026</li>
-    </ul>
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><span class="status-active">✅</span> Active — live or paper trading</div>
+    <div class="legend-item"><span class="status-paper">📄</span> Paper — not yet live</div>
+    <div class="legend-item"><span class="status-watch">⚠️</span> Watch — edge unconfirmed</div>
+    <div class="legend-item"><span class="small-warn">⚠️</span> Sub-50 trades — indicative only</div>
+    <div class="legend-item"><span class="pnl-neu">—</span> PF no losses yet, not meaningful</div>
+    <div class="legend-item">Session Edge = strongest historical session</div>
   </div>
 
   <!-- CTA -->
   <div class="cta">
     <div class="cta-text">
       <h3>Got a strategy that works?</h3>
-      <p>Submit your preset for community review. Fill out the template and post in Discord.</p>
+      <p>Submit your preset for community review. Minimum 50 backtest trades required for Validated listing.</p>
     </div>
     <a class="cta-btn" href="https://github.com/lonewolftradinggroup-ai/lwtg-strategies/blob/master/community/SUBMISSION_TEMPLATE.md">
       VIEW TEMPLATE →
@@ -710,5 +594,40 @@
   Not financial advice · Past performance does not guarantee future results
 </footer>
 
+<script>
+  function sortTable(tableId, colIdx, type, dir) {
+    const tbody = document.querySelector('#' + tableId + ' tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    rows.sort((a, b) => {
+      let av = a.cells[colIdx].innerText.trim();
+      let bv = b.cells[colIdx].innerText.trim();
+      if (type === 'num' || type === 'pct') {
+        av = parseFloat(av.replace(/[^0-9.\-]/g, '')) || 0;
+        bv = parseFloat(bv.replace(/[^0-9.\-]/g, '')) || 0;
+        if (isNaN(av)) av = 999;
+        if (isNaN(bv)) bv = 999;
+      }
+      if (av < bv) return dir === 'asc' ? -1 : 1;
+      if (av > bv) return dir === 'asc' ? 1 : -1;
+      return 0;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  }
+
+  document.querySelectorAll('table').forEach(table => {
+    const headers = table.querySelectorAll('th');
+    let sortState = { col: null, dir: 'desc' };
+    headers.forEach((th, i) => {
+      th.addEventListener('click', () => {
+        const type = th.dataset.type || 'str';
+        const newDir = (sortState.col === i && sortState.dir === 'desc') ? 'asc' : 'desc';
+        sortState = { col: i, dir: newDir };
+        headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+        th.classList.add(newDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+        sortTable(table.id, i, type, newDir);
+      });
+    });
+  });
+</script>
 </body>
 </html>
