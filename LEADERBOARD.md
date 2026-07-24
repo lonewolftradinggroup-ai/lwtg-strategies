@@ -1,7 +1,13 @@
-# LWTG Strategy Leaderboard
+```
+╔══════════════════════════════════════════════════════════╗
+║   QUANT CRAWLER COMMUNITY                                ║
+║   Strategy Leaderboard                                   ║
+║   Powered by LWTG · Built by the community               ║
+╚══════════════════════════════════════════════════════════╝
+```
 
 > Ranked by Profit Factor — all-time results. Presets with fewer than 50 trades are marked ⚠️ and excluded from the main ranking.
-> 
+>
 > **Last updated:** 2026-07-24 | **Maintained by:** @LoneWolfTradingGroup
 
 ---
