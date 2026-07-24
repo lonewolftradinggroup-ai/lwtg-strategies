@@ -1,17 +1,13 @@
-```
-╔══════════════════════════════════════════════════════════╗
-║   QUANT CRAWLER COMMUNITY                                ║
-║   Strategy Library                                       ║
-║   Powered by LWTG · Built by the community               ║
-╚══════════════════════════════════════════════════════════╝
-```
+# Quant Crawler Community — Strategy Library
+
+**Powered by LWTG 🐺 · Built by the community**
 
 Community-maintained collection of validated strategies, configurations, and results for the LWTG MITS framework.
 
 **Maintained by:** @LoneWolfTradingGroup  
 **Last updated:** 2026-07-24
 
-🌐 [View Online](https://lonewolftradinggroup-ai.github.io/lwtg-strategies) | 🏆 [View Leaderboard](https://lonewolftradinggroup-ai.github.io/lwtg-strategies/LEADERBOARD)
+🌐 [Strategy Library](https://lonewolftradinggroup-ai.github.io/lwtg-strategies) | 🏆 [Leaderboard](https://lonewolftradinggroup-ai.github.io/lwtg-strategies/leaderboard.html)
 
 ---
 
