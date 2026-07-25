@@ -5,7 +5,7 @@
 Community-maintained collection of validated strategies, configurations, and results for the LWTG MITS framework.
 
 **Maintained by:** @LoneWolfTradingGroup  
-**Last updated:** 2026-07-24
+**Last updated:** 2026-07-27
 
 🌐 [Strategy Library](https://lonewolftradinggroup-ai.github.io/lwtg-strategies) | 🏆 [Leaderboard](https://lonewolftradinggroup-ai.github.io/lwtg-strategies/leaderboard.html)
 
@@ -32,6 +32,7 @@ Community-maintained collection of validated strategies, configurations, and res
 |---|---|---|---|---|---|---|---|
 | MNQ-4m-QCT | MNQ | 4m | 20 | 75.0% | 1.28 | +$663.00 | 📄 Paper |
 | MGC-2m-QCT | MGC | 2m | 3 | 100% | — | +$537.90 | 📄 Paper |
+| MYM-5m-QCT | MYM | 5m | 7 | — | — | — | 📄 Paper |
 
 ### QC Signals
 
