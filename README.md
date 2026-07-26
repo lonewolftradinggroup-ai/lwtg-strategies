@@ -20,6 +20,7 @@ Community-maintained collection of validated strategies, configurations, and res
   /MITS         ← MITS instrument configs
 /community
   SUBMISSION_TEMPLATE.md
+  QCT_Discord_Settings.md  ← community-shared configs from Discord
 ```
 
 ---
@@ -32,7 +33,7 @@ Community-maintained collection of validated strategies, configurations, and res
 |---|---|---|---|---|---|---|---|
 | MNQ-4m-QCT | MNQ | 4m | 20 | 75.0% | 1.28 | +$663.00 | 📄 Paper |
 | MGC-2m-QCT | MGC | 2m | 3 | 100% | — | +$537.90 | 📄 Paper |
-| MYM-5m-QCT | MYM | 5m | 7 | — | — | — | 📄 Paper |
+| MYM-5m-QCT | MYM | 5m | — | — | — | — | 📄 Paper |
 
 ### QC Signals
 
@@ -49,6 +50,12 @@ Community-maintained collection of validated strategies, configurations, and res
 | MES-15m | MES | 15m | 24 | 91.7% | 8.05 | +$1,150.50 | ✅ Active |
 | MNQ-15m | MNQ | 15m | 4 | 50.0% | 1.29 | +$91.00 | ✅ Active |
 | M2K-15m | M2K | 15m | 54 | 70.4% | 0.69 | -$370.40 | ⚠️ Watch |
+
+---
+
+## Community Settings
+
+See [`community/QCT_Discord_Settings.md`](community/QCT_Discord_Settings.md) for QC Trend configurations shared by community members. These are **not formally validated** — for reference and discussion only.
 
 ---
 
