@@ -55,7 +55,11 @@ Community-maintained collection of validated strategies, configurations, and res
 
 ## Community Settings
 
-See [`community/QCT_Discord_Settings.md`](community/QCT_Discord_Settings.md) for QC Trend configurations shared by community members. These are **not formally validated** — for reference and discussion only.
+[`community/QCT_Discord_Settings.md`](community/QCT_Discord_Settings.md) is a living document of QC Trend configurations shared by community members in Discord. It includes a master summary table (sortable by WR and PF) with hotlinks to each contributor's full config, trailing stop comparisons, and performance results where available.
+
+Currently documenting: **@ChicagoSid** (6 tickers), **@Dryeyel/@Jim** (MGC 2m), **@VettiTrader** (MNQ 4m).
+
+> ⚠️ These configs are **not reviewed or endorsed** by @LoneWolfTradingGroup. Do your own validation. Minimum 50 backtest trades before drawing conclusions.
 
 ---
 
